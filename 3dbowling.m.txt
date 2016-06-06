@@ -1,0 +1,26 @@
+clear all % Clear all variables
+close all % Close all open figures
+clc 	% Clear command window
+
+%% Loop to continue till it continues
+while true 
+
+	% % Capturing screenshot and saving it to sdcard of the android phone as bowl1.png
+	system('adb shell screencap -p /sdcard/bowl1.png'); 
+
+	% % Pulling image to your working directory
+	system('adb pull /sdcard/bowl1.png');
+
+	% % Readingg pulled image from your working directory
+	im=imread('bowl1.png');
+
+	% % Displaying the pulled image
+	figure(1);
+
+	% % Generating command to be given for swiping
+	a=['adb shell input swipe 360 1008 360 550'];
+	system(a);
+
+	% % Introducing the time delay of 2 seconds
+	pause(2);
+end;
